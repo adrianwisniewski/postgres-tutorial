@@ -1,0 +1,48 @@
+-- Database: challange1
+
+-- DROP DATABASE IF EXISTS challange1;
+
+CREATE DATABASE challange1
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'C'
+    LC_CTYPE = 'C'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+	
+--creating owners table
+CREATE TABLE owners (
+	id SERIAL PRIMARY KEY,
+	first_name VARCHAR(30),
+	last_name VARCHAR(30),
+	city VARCHAR(30),
+	state CHAR(2)
+);
+--displaying table
+SELECT * FROM owners;
+
+--creating pets table
+CREATE TABLE pets (
+	id SERIAL PRIMARY KEY,
+	species VARCHAR(30),
+	full_name VARCHAR(30),
+	age INT,
+	owner_id INT REFERENCES owners(id)
+);
+--displaying table
+SELECT * FROM pets;
+
+ALTER TABLE owners
+ADD COLUMN email VARCHAR(50) UNIQUE;
+
+--displaying table
+SELECT * FROM owners;
+
+--modyfing type
+ALTER TABLE owners
+ALTER COLUMN last_name TYPE VARCHAR(50);
+
+--displaying table
+SELECT * FROM owners;
