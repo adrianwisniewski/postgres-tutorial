@@ -1,0 +1,39 @@
+SELECT * FROM owners;
+
+-- inserting data to owners
+INSERT INTO owners (first_name, last_name,city,state,email)
+VALUES ('Stefan', 'Nowacki', 'Warszawa', 'ZS', 'stefan.nowacki@gmail.com'),('Mario', 'Kowalski', 'Ziemniaczana-spirala', 'NN', 'buziak59@gmail.com');
+
+SELECT * FROM owners;
+
+--creating pets table
+CREATE TABLE pets (
+	id SERIAL PRIMARY KEY,
+	species VARCHAR(30),
+	full_name VARCHAR(30),
+	age INT,
+	owner_id INT REFERENCES owners(id)
+);
+
+-- inserting data to owners
+INSERT INTO pets (species, full_name,age,owner_id)
+VALUES ('Dog', 'Mariuszek', '26', '1'),('Cat', 'Ciappa', '2126', '2');
+
+SELECT * FROM pets;
+
+-- inserting two new owners
+INSERT INTO owners (first_name, last_name,city,state,email)
+VALUES ('Maciek', 'Zklanu', 'Szczeicn', 'ZS', 'kc@gmail.com'),('Macedon', 'Nowak', 'Ziemniaczana-spirala', 'NN', 'hejhej@gmail.com');
+
+
+-- updating age of Ciappa
+UPDATE pets
+SET age = '3'
+WHERE id = 2;
+
+SELECT * FROM pets;
+
+
+--deleting Macedon from owners
+DELETE FROM owners
+WHERE id = 4;
